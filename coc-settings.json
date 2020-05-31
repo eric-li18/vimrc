@@ -1,0 +1,5 @@
+{
+    "python.linting.enabled": true,
+    "coc.preferences.formatOnSaveFiletypes":["python", "json", "yaml"],
+    "suggest.noselect": false
+}

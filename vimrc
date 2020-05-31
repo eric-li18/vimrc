@@ -60,6 +60,9 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
 nnoremap <leader>cr :CocRestart
+nnoremap <silent>K :call <SID>show_documentation()<CR>
+let g:coc_global_extensions = [ 'coc-python', 'coc-json', 'black']
+
 
 "Misc Remap
 nnoremap <leader>h <C-w>h<CR>
