@@ -41,8 +41,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'jremmen/vim-ripgrep'
 
 call plug#end()
+
+
+if executable('rg')
+        let g:rg_derive_root='true'
+endif
 
 colorscheme gruvbox
 set background=dark
@@ -60,8 +66,7 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
 nnoremap <leader>cr :CocRestart
-nnoremap <silent>K :call <SID>show_documentation()<CR>
-let g:coc_global_extensions = [ 'coc-python', 'coc-json', 'black']
+let g:coc_global_extensions = [ 'coc-python', 'coc-json' ]
 
 
 "Misc Remap
@@ -69,6 +74,10 @@ nnoremap <leader>h <C-w>h<CR>
 nnoremap <leader>j <C-w>j<CR>
 nnoremap <leader>k <C-w>k<CR>
 nnoremap <leader>l <C-w>l<CR>
+nnoremap <leader>H <C-w>H<CR>
+nnoremap <leader>J <C-w>J<CR>
+nnoremap <leader>K <C-w>K<CR>
+nnoremap <leader>L <C-w>L<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>ps :Rg<Space>
 nnoremap <leader>+ :vertical resize +15<CR>
@@ -77,6 +86,9 @@ nnoremap hh <nop>
 nnoremap jj <nop>
 nnoremap kk <nop>
 nnoremap ll <nop>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 20<CR>
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 "fzf Remap
 nnoremap <leader>pf :Files<CR>
