@@ -1,17 +1,22 @@
 "General Settings
 syntax on "basic syntax
+set relativenumber "shows line numbering relative to current line
+set number
 set ruler " Shows col and line num in bottom right
+filetype plugin indent on
 set nowrap "word wrap off
 set noerrorbells "remove sounds from eol
-set nu "line numbering
 set ch=2 " Command line is 2 high. Avoids 'enter to continue' messages.
 set history=100 " Shows command history
 set list listchars=tab:\ \ ,trail:·
-set shortmess=a " Command line is 2 high. Avoids 'enter to continue' messages.
+set shortmess=a "set display information about files
 set showcmd "Shows partial commands in the lower bar while typing
 set laststatus=2 " Always show the status line
 set updatetime=50
 set ttimeoutlen=5
+set incsearch "incremental search: shows results while searching
+set smartcase "case-sensitive searching until a capital letter
+set colorcolumn=80 "set a colored column for text
 
 "Tabbing and Indenting
 set tabstop=4 "set existing tab to 4 columns wide
@@ -21,14 +26,14 @@ set expandtab "set all tab char to spaces
 set smartindent "vim will try to indent for you
 
 "File Management
-set noswapfile "no .swp file
 set nobackup "don't create backups of files
 set undodir=~/.vim/undodir
 set undofile "have a file to undo changes
 
-set incsearch "incremental search: shows results while searching
-set smartcase "case-sensitive searching until a capital letter
-set colorcolumn=80 "set a colored column for text
+let g:netrw_browse_split = 2
+let g:vrfr_rg = 'true'
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
 
 "Plugins
 call plug#begin('~/.vim/plugged')
@@ -42,6 +47,11 @@ Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
+Plug 'vim-airline/vim-airline'
+Plug 'bkad/CamelCaseMotion'
+Plug 'junegunn/vim-peekaboo'
+Plug 'haya14busa/incsearch.vim'
+Plug 'flazz/vim-colorschemes'
 
 call plug#end()
 
@@ -95,6 +105,12 @@ nnoremap <leader>pf :Files<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>fb :Buffers<CR>
 
+" Sweet Sweet FuGITive
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
+nmap <leader>gs :G<CR>
+nmap <leader>co :Gcommit<CR>
+
 " --- vim go (polyglot) settings.
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
@@ -111,14 +127,7 @@ let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_auto_sameids = 1
 
-"Autocommands
-filetype plugin indent on
-
-"Toggles whether relativenumbering or not depending on mode and focus
-set relativenumber "shows line numbering relative to current line
-set number
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
-augroup END
+" Incrementalsearch Remap
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
