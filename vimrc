@@ -34,6 +34,7 @@ let g:netrw_browse_split = 2
 let g:vrfr_rg = 'true'
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
+set signcolumn=number
 
 "Plugins
 call plug#begin('~/.vim/plugged')
@@ -77,7 +78,22 @@ nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
 nnoremap <leader>cr :CocRestart
 let g:coc_global_extensions = [ 'coc-python', 'coc-json' ]
-
+nnoremap <silent><leader>pl :call <SID>show_documentation()<CR>
+" Use tab for trigger completion with characters ahead and navigate.
+" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" " other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
 
 "Misc Remap
 nnoremap <leader>h <C-w>h<CR>
@@ -109,6 +125,8 @@ nnoremap <leader>fb :Buffers<CR>
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gl :diffget //2<CR>
 nmap <leader>gs :G<CR>
+nmap <leader>g` :Gpull<CR>
+nmap <leader>g~ :Gpush<CR>
 
 " --- vim go (polyglot) settings.
 let g:go_highlight_build_constraints = 1
