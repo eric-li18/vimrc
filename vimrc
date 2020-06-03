@@ -108,7 +108,6 @@ nnoremap <leader>fb :Buffers<CR>
 " Sweet Sweet FuGITive
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gl :diffget //2<CR>
-nmap <leader>ga :G<CR>
 nmap <leader>gs :G<CR>
 
 " --- vim go (polyglot) settings.
