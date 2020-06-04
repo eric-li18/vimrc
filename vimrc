@@ -27,6 +27,7 @@ set smartindent "vim will try to indent for you
 
 "File Management
 set nobackup "don't create backups of files
+set noswapfile
 set undodir=~/.vim/undodir
 set undofile "have a file to undo changes
 
