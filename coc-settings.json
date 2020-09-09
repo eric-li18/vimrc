@@ -3,11 +3,15 @@
     "coc.preferences.formatOnSaveFiletypes": [
         "python",
         "json",
+        "yaml",
+        "dart",
+        "javascript",
         "yaml"
     ],
+    "javascript.format.enabled": true,
+    "yaml.format.enable": true,
+    "yaml.format.singleQuote": true,
     "suggest.noselect": false,
     "suggest.echodocSupport": true,
-    "diagnostic.errorSign": "•",
-    "diagnostic.warningSign": "•",
-    "diagnostic.infoSign": "•"
+    "suggest.timeout": 5000
 }
