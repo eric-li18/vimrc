@@ -16,7 +16,7 @@ set updatetime=50
 set ttimeoutlen=5
 set incsearch "incremental search: shows results while searching
 set smartcase "case-sensitive searching until a capital letter
-set colorcolumn=80 "set a colored column for text
+set colorcolumn=100 "set a colored column for text
 
 "Tabbing and Indenting
 set tabstop=4 "set existing tab to 4 columns wide
@@ -50,7 +50,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'vim-airline/vim-airline'
-Plug 'bkad/CamelCaseMotion'
 Plug 'junegunn/vim-peekaboo'
 Plug 'haya14busa/incsearch.vim'
 Plug 'flazz/vim-colorschemes'
@@ -62,7 +61,10 @@ if executable('rg')
         let g:rg_derive_root='true'
 endif
 
-colorscheme gruvbox
+"Monokai, blackboard, Tomorrow-Night-Eighties, PaperColor, CandyPaper,
+"badwolf, brogrammer, bubblegum, buddy, bvemu, candyman, chalkboard, codedark,
+"colorful, crayon, ego, 1989
+colorscheme bubblegum
 set background=dark
 
 let mapleader=" "
@@ -78,16 +80,9 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
 nnoremap <leader>cr :CocRestart
-let g:coc_global_extensions = [ 'coc-python', 'coc-json' ]
+let g:echodoc_enable_at_startup = 1
+let g:coc_global_extensions = [ 'coc-python', 'coc-json', 'coc-flutter', 'coc-tsserver', 'coc-yaml' ]
 nnoremap <silent><leader>pl :call <SID>show_documentation()<CR>
-" Use tab for trigger completion with characters ahead and navigate.
-" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
@@ -149,3 +144,12 @@ let g:go_auto_sameids = 1
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
+
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+    augroup END
+endif
