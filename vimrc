@@ -17,6 +17,7 @@ set ttimeoutlen=5
 set incsearch "incremental search: shows results while searching
 set smartcase "case-sensitive searching until a capital letter
 set colorcolumn=100 "set a colored column for text
+set mouse=a
 
 "Tabbing and Indenting
 set tabstop=4 "set existing tab to 4 columns wide
@@ -64,7 +65,7 @@ endif
 "Monokai, blackboard, Tomorrow-Night-Eighties, PaperColor, CandyPaper,
 "badwolf, brogrammer, bubblegum, buddy, bvemu, candyman, chalkboard, codedark,
 "colorful, crayon, ego, 1989
-colorscheme bubblegum
+colorscheme ego
 set background=dark
 
 let mapleader=" "
@@ -104,10 +105,6 @@ nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>ps :Rg<Space>
 nnoremap <leader>+ :vertical resize +15<CR>
 nnoremap <leader>- :vertical resize -15<CR>
-nnoremap hh <nop>
-nnoremap jj <nop>
-nnoremap kk <nop>
-nnoremap ll <nop>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 20<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
